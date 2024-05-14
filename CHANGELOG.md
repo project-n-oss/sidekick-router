@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.1](https://github.com/project-n-oss/interchange/compare/v1.0.0...v1.0.1) (2024-05-14)
+
+
+### Bug Fixes
+
+* fix build and readme ([91a7116](https://github.com/project-n-oss/interchange/commit/91a7116e48c2098dcdd9f70a5afbaf950d48edc8))
+* fix windows log stdout ([f9485ee](https://github.com/project-n-oss/interchange/commit/f9485ee0354ab2b9fc6f485dd78ce5e0418ec48a))
+
 ## 1.0.0 (2024-05-14)
 
 
