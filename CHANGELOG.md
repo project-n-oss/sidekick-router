@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/project-n-oss/interchange/compare/v1.0.1...v1.0.2) (2024-05-14)
+
+
+### Bug Fixes
+
+* changed crunched bucket prefix ([b8c6bf2](https://github.com/project-n-oss/interchange/commit/b8c6bf2aae07d23ee8a44f1f98ade21f4e989997))
+
 ## [1.0.1](https://github.com/project-n-oss/interchange/compare/v1.0.0...v1.0.1) (2024-05-14)
 
 
