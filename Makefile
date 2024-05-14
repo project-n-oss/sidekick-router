@@ -1,9 +1,9 @@
 all: iterchange
 
 bin/staticcheck: go.mod go.sum
-	GOBIN=`pwd`/bin go install honnef.co/go/tools/cmd/staticcheck
+	GOBIN=`pwd`/bin go install honnef.co/go/tools/cmd/staticcheck@latest
 
-bin: bin/iterchange 
+bin: bin/staticcheck 
 
 iterchange:
 	go build .
