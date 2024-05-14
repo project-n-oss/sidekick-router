@@ -8,7 +8,7 @@ import (
 	"net/http/httputil"
 	"time"
 
-	"github.com/project-n-oss/interchange/app"
+	"github.com/project-n-oss/sidekick-router/app"
 	"go.uber.org/zap"
 )
 

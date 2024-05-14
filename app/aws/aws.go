@@ -7,7 +7,7 @@ import (
 	"time"
 
 	v4 "github.com/aws/aws-sdk-go-v2/aws/signer/v4"
-	"github.com/project-n-oss/interchange/pkg/copybody"
+	"github.com/project-n-oss/sidekick-router/pkg/copybody"
 	"go.uber.org/zap"
 )
 

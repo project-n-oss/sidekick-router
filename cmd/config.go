@@ -1,11 +1,11 @@
 package cmd
 
 import (
-	"github.com/project-n-oss/interchange/api"
-	"github.com/project-n-oss/interchange/app"
+	"github.com/project-n-oss/sidekick-router/api"
+	"github.com/project-n-oss/sidekick-router/app"
 )
 
-const cfgEnvPrefix = "INTERCHANGE"
+const cfgEnvPrefix = "SIDEKICKROUTER"
 
 type Config struct {
 	Api api.Config `yaml:"Api"`

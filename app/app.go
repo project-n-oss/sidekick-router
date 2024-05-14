@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/project-n-oss/interchange/app/aws"
+	"github.com/project-n-oss/sidekick-router/app/aws"
 	"go.uber.org/zap"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"

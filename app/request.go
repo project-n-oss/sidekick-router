@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/project-n-oss/interchange/app/aws"
+	"github.com/project-n-oss/sidekick-router/app/aws"
 )
 
 // DoRequest makes a request to the cloud platform

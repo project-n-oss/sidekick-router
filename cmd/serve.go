@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/project-n-oss/interchange/api"
-	"github.com/project-n-oss/interchange/app"
-	"github.com/project-n-oss/interchange/pkg/shutdown"
+	"github.com/project-n-oss/sidekick-router/api"
+	"github.com/project-n-oss/sidekick-router/app"
+	"github.com/project-n-oss/sidekick-router/pkg/shutdown"
 	"github.com/spf13/cobra"
 )
 

@@ -1,4 +1,4 @@
-module github.com/project-n-oss/interchange
+module github.com/project-n-oss/sidekick-router
 
 go 1.21.1
 

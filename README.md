@@ -1,14 +1,14 @@
-![release](https://img.shields.io/github/v/release/project-n-oss/interchange)
+![release](https://img.shields.io/github/v/release/project-n-oss/sidekick-router)
 
-# Interchange
+# sidekick-router
 
-Interchange is a [sidecar](https://learn.microsoft.com/en-us/azure/architecture/patterns/sidecar) proxy process that help redirect or reduce chances of overwrites in native crunch.
+sidekick-router is a [sidecar](https://learn.microsoft.com/en-us/azure/architecture/patterns/sidecar) proxy process that help redirect or reduce chances of overwrites in native crunch.
 
 ## Getting started
 
 - go1.21
 
-## Running Interchange
+## Running sidekick-router
 
 ### Local
 
@@ -19,13 +19,13 @@ App:
   CloudPlatform: AWS
 ```
 
-You can then run Interchange directly from the command line:
+You can then run sidekick-router directly from the command line:
 
 ```bash
 go run main.go serve
 ```
 
-This will run Interchange localy on your machine on `localhost:7075`.
+This will run sidekick-router localy on your machine on `localhost:7075`.
 
 run the following command to learn more about the options:
 
@@ -33,32 +33,32 @@ run the following command to learn more about the options:
 go run main.go serve --help
 ```
 
-## Using Interchange
+## Using sidekick-router
 
 ### Docker
 
-You can pull the docker image from the [containers page](https://github.com/project-n-oss/interchange/pkgs/container/interchange)
+You can pull the docker image from the [containers page](https://github.com/project-n-oss/sidekick-router/pkgs/container/sidekick-router)
 
 You can then run the docker image with the following command:
 
 ```bash
-docker run -p 7075:7075 --env INTERCHANGE_APP_CLOUDPLATFORM=AWS <interchange-image> serve 
+docker run -p 7075:7075 --env SIDEKICKROUTER_APP_CLOUDPLATFORM=AWS <sidekick-router-image> serve 
 ```
 
 
 ### Pre Built binaries
 
-Interchange binaries are hosted and released from GitHub. Please check our [releases page](./releases).
+sidekick-router binaries are hosted and released from GitHub. Please check our [releases page](./releases).
 To download any release of our linux amd64 binary run:
 
 ```bash
-wget https://github.com/project-n-oss/interchange/releases/download/${release}/interchange-linux-amd64.tar.gz
+wget https://github.com/project-n-oss/sidekick-router/releases/download/${release}/sidekick-router-linux-amd64.tar.gz
 ```
 
 You can then run the binary directly:
 
 ```bash
-INTERCHANGE_APP_CLOUDPLATFORM=AWS ./interchange serve
+SIDEKICKROUTER_APP_CLOUDPLATFORM=AWS ./sidekick-router serve
 ```
 
 ## Contributing

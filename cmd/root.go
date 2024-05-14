@@ -10,9 +10,9 @@ import (
 	"syscall"
 
 	"github.com/joho/godotenv"
-	"github.com/project-n-oss/interchange/pkg/config"
-	"github.com/project-n-oss/interchange/pkg/logger"
-	"github.com/project-n-oss/interchange/pkg/shutdown"
+	"github.com/project-n-oss/sidekick-router/pkg/config"
+	"github.com/project-n-oss/sidekick-router/pkg/logger"
+	"github.com/project-n-oss/sidekick-router/pkg/shutdown"
 	"github.com/spf13/cobra"
 	"go.uber.org/zap"
 )
@@ -41,7 +41,7 @@ var (
 )
 
 var rootCmd = &cobra.Command{
-	Use:           "interchange",
+	Use:           "sidekick-router",
 	Version:       version(),
 	SilenceErrors: true,
 	SilenceUsage:  true,
