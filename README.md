@@ -48,7 +48,7 @@ docker run -p 7075:7075 --env SIDEKICKROUTER_APP_CLOUDPLATFORM=AWS <sidekick-rou
 
 ### Pre Built binaries
 
-sidekick-router binaries are hosted and released from GitHub. Please check our [releases page](./releases).
+sidekick-router binaries are hosted and released from GitHub. Please check our [releases page](https://github.com/project-n-oss/sidekick-router/releases).
 To download any release of our linux amd64 binary run:
 
 ```bash
