@@ -1,4 +1,4 @@
-FROM golang:1.20-alpine
+FROM golang:1.21-alpine
 
 WORKDIR /go/src/github.com/project-n-oss/interchange
 COPY . .
@@ -6,7 +6,7 @@ COPY . .
 RUN go generate ./...
 RUN go build .
 
-FROM golang:1.20-alpine
+FROM golang:1.21-alpine
 
 WORKDIR /usr/bin
 
