@@ -12,7 +12,14 @@ Interchange is a [sidecar](https://learn.microsoft.com/en-us/azure/architecture/
 
 ### Local
 
-You can run Interchange directly from the command line:
+You will need to create a config.yml file in the root of the project. You can use the following template:
+
+```yaml
+App:
+  CloudPlatform: AWS
+```
+
+You can then run Interchange directly from the command line:
 
 ```bash
 go run main.go serve
@@ -26,34 +33,18 @@ run the following command to learn more about the options:
 go run main.go serve --help
 ```
 
-### Docker
-
-Build the docker image:
-
-```bash
-docker build -t interchange .
-```
-
-or pull one from the [containers page](https://github.com/project-n-oss/interchange/pkgs/container/interchange)
-
-#### Running on an AWS EC2 Instance using instance profile credentials / Google Compute Engine instance using attached IAM service account
-
-```bash
-docker run -p 7075:7075 <Interchange-image> Interchange serve 
-```
-
 ## Using Interchange
 
-TODO
+### Docker
 
-### AWS sdks
+You can pull the docker image from the [containers page](https://github.com/project-n-oss/interchange/pkgs/container/interchange)
 
-TODO
+You can then run the docker image with the following command:
 
+```bash
+docker run -p 7075:7075 --env INTERCHANGE_APP_CLOUDPLATFORM=AWS <interchange-image> serve 
+```
 
-### 3rd Party Integrations
-
-TODO
 
 ### Pre Built binaries
 
@@ -61,7 +52,13 @@ Interchange binaries are hosted and released from GitHub. Please check our [rele
 To download any release of our linux amd64 binary run:
 
 ```bash
-wget https://github.com/project-n-oss/interchange/releases/${release}/download/interchange-linux-amd64.tar.gz
+wget https://github.com/project-n-oss/interchange/releases/download/${release}/interchange-linux-amd64.tar.gz
+```
+
+You can then run the binary directly:
+
+```bash
+INTERCHANGE_APP_CLOUDPLATFORM=AWS ./interchange serve
 ```
 
 ## Contributing

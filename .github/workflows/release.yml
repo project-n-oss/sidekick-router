@@ -9,7 +9,6 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  # place holders for sidekick build to run
   AWS_ACCESS_KEY_ID: foobar_key
   AWS_SECRET_ACCESS_KEY: foobar_secret
 
@@ -25,7 +24,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Docker Build
-        run: docker build -t sidekick .
+        run: docker build -t interchange .
 
       - name: Log in to the Container registry
         uses: docker/login-action@v2
@@ -36,7 +35,7 @@ jobs:
 
       - name: Docker Push 
         run: |
-          docker tag sidekick:latest ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:commit-$GITHUB_SHA
+          docker tag interchange:latest ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:commit-$GITHUB_SHA
           docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:commit-$GITHUB_SHA
 
   docker-build-main:
@@ -170,4 +169,4 @@ jobs:
         goversion: "1.21"
         release_tag: ${{ needs.release.outputs.tag_name }}
         md5sum: false
-        asset_name: sidekick-${{ matrix.goos }}-${{ matrix.goarch }}
+        asset_name: interchange-${{ matrix.goos }}-${{ matrix.goarch }}
