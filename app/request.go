@@ -34,7 +34,7 @@ func (sess *Session) DoAwsRequest(req *http.Request) (*http.Response, bool, erro
 	}
 
 	crunchedBucket := aws.SourceBucket{
-		Bucket: fmt.Sprintf("granica-%s", sourceBucket.Bucket),
+		Bucket: fmt.Sprintf("project-n-%s", sourceBucket.Bucket),
 		Region: sourceBucket.Region,
 		Style:  sourceBucket.Style,
 	}
