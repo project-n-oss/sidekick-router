@@ -1,0 +1,9 @@
+bin/
+**/*.env
+.github/
+.gitignored
+
+**/*.env
+**/*.png
+README.md
+compose-dev.yaml
