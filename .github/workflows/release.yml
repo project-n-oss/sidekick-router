@@ -167,7 +167,7 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         goos: ${{ matrix.goos }}
         goarch: ${{ matrix.goarch }}
-        goversion: "1.20"
+        goversion: "1.21"
         release_tag: ${{ needs.release.outputs.tag_name }}
         md5sum: false
         asset_name: sidekick-${{ matrix.goos }}-${{ matrix.goarch }}
