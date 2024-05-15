@@ -18,10 +18,10 @@ func TestAws_SourceBucket(t *testing.T) {
 		requestStyle s3RequestStyle
 		region       string
 	}{
-		{requestStyle: pathStyle, region: "us-east-1"},
-		{requestStyle: pathStyle, region: "us-east-2"},
-		{requestStyle: pathStyle, region: "us-west-1"},
-		{requestStyle: pathStyle, region: "us-west-2"},
+		{requestStyle: PathStyle, region: "us-east-1"},
+		{requestStyle: PathStyle, region: "us-east-2"},
+		{requestStyle: PathStyle, region: "us-west-1"},
+		{requestStyle: PathStyle, region: "us-west-2"},
 	}
 
 	for _, tc := range testCases {
