@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.1.0](https://github.com/project-n-oss/sidekick-router/compare/v1.0.3...v1.1.0) (2024-05-15)
+
+
+### Features
+
+* added load tests ([54f4bb2](https://github.com/project-n-oss/sidekick-router/commit/54f4bb2717827dcac062f57a4771ca1b2180ff36))
+* fix file permission for bash script ([c9fc5da](https://github.com/project-n-oss/sidekick-router/commit/c9fc5dadd52e429e32d09431b09b63eb7d4ffef5))
+
+
+### Bug Fixes
+
+* fix path style crunched bucket path ([5390ff5](https://github.com/project-n-oss/sidekick-router/commit/5390ff53decc2179214b54cb8a485dbad2e8b441))
+* fix pathstyle type ([a72fbc5](https://github.com/project-n-oss/sidekick-router/commit/a72fbc5b79be3f9cfd625515a5193390f3f0fb16))
+* fix verbose flag ([da90ae8](https://github.com/project-n-oss/sidekick-router/commit/da90ae8b520b849fc326a0fd9a42eaf955d4b7c2))
+* remove console log ([62d5751](https://github.com/project-n-oss/sidekick-router/commit/62d5751554ff0dfa446a02280119836c43ab476f))
+
 ## [1.0.3](https://github.com/project-n-oss/sidekick-router/compare/v1.0.2...v1.0.3) (2024-05-14)
 
 
