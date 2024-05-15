@@ -31,7 +31,7 @@ func init() {
 	rootLogger, _ = logger.NewLogger(false)
 
 	rootCmd.CompletionOptions.DisableDefaultCmd = true
-	rootCmd.PersistentFlags().StringP("log-level", "", "info", "log level. one of: debug, info, warn, error, fatal, panic")
+	rootCmd.PersistentFlags().BoolP("verbose", "v", false, "make output more verbose")
 	rootCmd.PersistentFlags().StringP("config", "c", "", "read configuration from this file")
 }
 
