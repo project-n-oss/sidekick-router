@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/project-n-oss/sidekick-router/compare/v1.1.0...v1.1.1) (2024-05-15)
+
+
+### Bug Fixes
+
+* fix run.sh ([d0f92c7](https://github.com/project-n-oss/sidekick-router/commit/d0f92c7aa6da001229cdf01feb905a2c1ed90af9))
+
 ## [1.1.0](https://github.com/project-n-oss/sidekick-router/compare/v1.0.3...v1.1.0) (2024-05-15)
 
 
