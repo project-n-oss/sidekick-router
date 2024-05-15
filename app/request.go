@@ -3,6 +3,7 @@ package app
 import (
 	"fmt"
 	"net/http"
+	"strings"
 
 	"github.com/project-n-oss/sidekick-router/app/aws"
 )
@@ -39,6 +40,10 @@ func (sess *Session) DoAwsRequest(req *http.Request) (*http.Response, bool, erro
 		Style:  sourceBucket.Style,
 	}
 
+	if sourceBucket.Style == aws.PathStyle {
+		req.URL.Path = strings.Replace(req.URL.Path, sourceBucket.Bucket, crunchedBucket.Bucket, 1)
+	}
+
 	crunchedRequest, err := aws.NewRequest(sess.Context(), sess.Logger(), req, crunchedBucket)
 	if err != nil {
 		return nil, false, fmt.Errorf("failed to make aws request: %w", err)
@@ -51,9 +56,7 @@ func (sess *Session) DoAwsRequest(req *http.Request) (*http.Response, bool, erro
 		statusCode = resp.StatusCode
 	}
 
-	// check crunched version of file
 	if statusCode == 404 {
-		sess.logger.Info("Trying crunched version of file")
 		resp, err := http.DefaultClient.Do(crunchedRequest)
 		return resp, true, err
 	}

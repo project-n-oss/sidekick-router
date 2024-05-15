@@ -20,12 +20,11 @@ func NewRequest(ctx context.Context, logger *zap.Logger, req *http.Request, sour
 
 	var host string
 	switch sourceBucket.Style {
-	case virtualHostedStyle:
+	case VirtualHostedStyle:
 		host = fmt.Sprintf("%s.s3.%s.amazonaws.com", sourceBucket.Bucket, sourceBucket.Region)
 	// default to path style
 	default:
 		host = fmt.Sprintf("s3.%s.amazonaws.com", sourceBucket.Region)
-
 	}
 
 	clone := req.Clone(ctx)

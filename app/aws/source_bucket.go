@@ -12,9 +12,9 @@ type s3RequestStyle string
 
 const (
 	// example: https://bucket-name.s3.region-code.amazonaws.com/key-name
-	virtualHostedStyle s3RequestStyle = "virtual-hosted-style"
+	VirtualHostedStyle s3RequestStyle = "virtual-hosted-style"
 	// example: https://s3.region-code.amazonaws.com/bucket-name/key-name
-	pathStyle s3RequestStyle = "path-style"
+	PathStyle s3RequestStyle = "path-style"
 )
 
 type SourceBucket struct {
@@ -50,12 +50,12 @@ func ExtractSourceBucket(req *http.Request) (SourceBucket, error) {
 	if isVirtualHostedStyle {
 		bucket := split[0]
 		ret.Bucket = bucket
-		ret.Style = virtualHostedStyle
+		ret.Style = VirtualHostedStyle
 	} else if paths := strings.Split(req.URL.EscapedPath(), "/"); len(paths) > 1 {
 		// path-style request
 		bucket := paths[1]
 		ret.Bucket = bucket
-		ret.Style = pathStyle
+		ret.Style = PathStyle
 	} else {
 		return SourceBucket{}, fmt.Errorf("could not extract bucket from request")
 	}
