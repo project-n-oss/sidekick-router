@@ -17,7 +17,6 @@ export const options = getOptions;
 
 export default async function () {
     const res = http.get(signedRequest.url, { headers: signedRequest.headers });
-    console.log(res);
     check(res, {
         'is status 200': (r) => r.status === 200,
         'contains data': (r) => r.body !== undefined,
