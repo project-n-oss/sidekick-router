@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.2](https://github.com/project-n-oss/sidekick-router/compare/v1.1.1...v1.1.2) (2024-05-16)
+
+
+### Bug Fixes
+
+* cfg cloudplatform type to string ([2b014c3](https://github.com/project-n-oss/sidekick-router/commit/2b014c3dc4dcb5c5d62397432b03b1a6762e635c))
+* remove unused config ([9ffe284](https://github.com/project-n-oss/sidekick-router/commit/9ffe284af0cb276bdc211c27cad1e966d58748f9))
+
 ## [1.1.1](https://github.com/project-n-oss/sidekick-router/compare/v1.1.0...v1.1.1) (2024-05-15)
 
 
