@@ -35,6 +35,9 @@ func (sess *Session) DoAwsRequest(req *http.Request) (*http.Response, bool, erro
 	}
 
 	resp, err := http.DefaultClient.Do(cloudRequest)
+	if err != nil {
+		return nil, false, fmt.Errorf("failed to do aws request: %w", err)
+	}
 
 	statusCode := -1
 	if resp != nil {
