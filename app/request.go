@@ -34,21 +34,6 @@ func (sess *Session) DoAwsRequest(req *http.Request) (*http.Response, bool, erro
 		return nil, false, fmt.Errorf("failed to make aws request: %w", err)
 	}
 
-	crunchedBucket := aws.SourceBucket{
-		Bucket: fmt.Sprintf("project-n-%s", sourceBucket.Bucket),
-		Region: sourceBucket.Region,
-		Style:  sourceBucket.Style,
-	}
-
-	if sourceBucket.Style == aws.PathStyle {
-		req.URL.Path = strings.Replace(req.URL.Path, sourceBucket.Bucket, crunchedBucket.Bucket, 1)
-	}
-
-	crunchedRequest, err := aws.NewRequest(sess.Context(), sess.Logger(), req, crunchedBucket)
-	if err != nil {
-		return nil, false, fmt.Errorf("failed to make aws request: %w", err)
-	}
-
 	resp, err := http.DefaultClient.Do(cloudRequest)
 
 	statusCode := -1
@@ -56,7 +41,22 @@ func (sess *Session) DoAwsRequest(req *http.Request) (*http.Response, bool, erro
 		statusCode = resp.StatusCode
 	}
 
-	if statusCode == 404 {
+	if statusCode == 404 && !sess.app.cfg.NoCrunchFailover {
+		crunchedBucket := aws.SourceBucket{
+			Bucket: fmt.Sprintf("project-n-%s", sourceBucket.Bucket),
+			Region: sourceBucket.Region,
+			Style:  sourceBucket.Style,
+		}
+
+		if sourceBucket.Style == aws.PathStyle {
+			req.URL.Path = strings.Replace(req.URL.Path, sourceBucket.Bucket, crunchedBucket.Bucket, 1)
+		}
+
+		crunchedRequest, err := aws.NewRequest(sess.Context(), sess.Logger(), req, crunchedBucket)
+		if err != nil {
+			return nil, false, fmt.Errorf("failed to make aws request: %w", err)
+		}
+
 		resp, err := http.DefaultClient.Do(crunchedRequest)
 		return resp, true, err
 	}

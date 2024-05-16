@@ -48,7 +48,7 @@ func New(ctx context.Context, logger *zap.Logger, cfg Config) (*App, error) {
 		}
 	}
 
-	logger.Sugar().Infof("Cloud Platform: %s", cfg.CloudPlatform)
+	logger.Sugar().Infof("Cloud Platform: %s, CrunchFailover: %v", cfg.CloudPlatform, !cfg.NoCrunchFailover)
 	return &App{
 		cfg:    cfg,
 		logger: logger,
