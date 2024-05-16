@@ -14,8 +14,7 @@ func (c CloudPlatformType) String() string {
 }
 
 type Config struct {
-	CloudPlatform             string `yaml:"CloudPlatform"`
-	AwsIgnoreAuthHeaderRegion bool   `yaml:"AwsIgnoreAuthHeaderRegion"`
+	CloudPlatform string `yaml:"CloudPlatform"`
 }
 
 func (c Config) Validate() error {
