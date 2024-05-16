@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.0](https://github.com/project-n-oss/sidekick-router/compare/v1.1.2...v1.2.0) (2024-05-16)
+
+
+### Features
+
+* added err for request ([fb67641](https://github.com/project-n-oss/sidekick-router/commit/fb6764190c6c6b6100a8f8a10fc1fc2fbda2e65d))
+* added no crunch failover flag ([1d703cf](https://github.com/project-n-oss/sidekick-router/commit/1d703cf5f3fe1c11c46ed6a63e8ad2f9887a81a5))
+
 ## [1.1.2](https://github.com/project-n-oss/sidekick-router/compare/v1.1.1...v1.1.2) (2024-05-16)
 
 
