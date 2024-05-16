@@ -9,13 +9,17 @@ const (
 	GcpCloudPlatform CloudPlatformType = "GCP"
 )
 
+func (c CloudPlatformType) String() string {
+	return string(c)
+}
+
 type Config struct {
-	CloudPlatform             CloudPlatformType `yaml:"CloudPlatform"`
-	AwsIgnoreAuthHeaderRegion bool              `yaml:"AwsIgnoreAuthHeaderRegion"`
+	CloudPlatform             string `yaml:"CloudPlatform"`
+	AwsIgnoreAuthHeaderRegion bool   `yaml:"AwsIgnoreAuthHeaderRegion"`
 }
 
 func (c Config) Validate() error {
-	if c.CloudPlatform != AwsCloudPlatform && c.CloudPlatform != GcpCloudPlatform {
+	if c.CloudPlatform != AwsCloudPlatform.String() && c.CloudPlatform != GcpCloudPlatform.String() {
 		return fmt.Errorf("CloudPlatform must be one of: %s, %s", AwsCloudPlatform, GcpCloudPlatform)
 	}
 

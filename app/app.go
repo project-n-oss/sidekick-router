@@ -30,10 +30,10 @@ func New(ctx context.Context, logger *zap.Logger, cfg Config) (*App, error) {
 	}
 
 	switch cfg.CloudPlatform {
-	case AwsCloudPlatform:
+	case AwsCloudPlatform.String():
 		aws.RefreshCredentialsPeriodically(ctx, logger)
 
-	case GcpCloudPlatform:
+	case GcpCloudPlatform.String():
 		creds, err := google.FindDefaultCredentials(ctx, "https://www.googleapis.com/auth/devstorage.read_write")
 		if err != nil {
 			return nil, err

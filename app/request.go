@@ -13,7 +13,7 @@ import (
 // Returns the response and a boolean indicating if the response is from the crunched bucket
 func (sess *Session) DoRequest(req *http.Request) (*http.Response, bool, error) {
 	switch sess.app.cfg.CloudPlatform {
-	case AwsCloudPlatform:
+	case AwsCloudPlatform.String():
 		return sess.DoAwsRequest(req)
 	default:
 		return nil, false, fmt.Errorf("CloudPlatform %s not supported", sess.app.cfg.CloudPlatform)
