@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/project-n-oss/sidekick-router/compare/v1.3.0...v1.3.1) (2024-05-21)
+
+
+### Bug Fixes
+
+* crunched file not find status body ([118440f](https://github.com/project-n-oss/sidekick-router/commit/118440faeb945e3b72285bdd301001758329afa9))
+
 ## [1.3.0](https://github.com/project-n-oss/sidekick-router/compare/v1.2.0...v1.3.0) (2024-05-21)
 
 
