@@ -11,8 +11,25 @@ import (
 	"go.uber.org/zap"
 )
 
+type Options struct {
+	path *string
+}
+
+func WithPath(path string) func(*Options) {
+	return func(o *Options) {
+		o.path = &path
+	}
+}
+
 // NewRequest creates a standard aws s3 request
-func NewRequest(ctx context.Context, logger *zap.Logger, req *http.Request, sourceBucket SourceBucket) (*http.Request, error) {
+func NewRequest(ctx context.Context, logger *zap.Logger, req *http.Request, sourceBucket SourceBucket, opts ...func(*Options)) (*http.Request, error) {
+	options := &Options{
+		path: &req.URL.Path,
+	}
+	for _, opt := range opts {
+		opt(options)
+	}
+
 	awsCred, err := getCredentialsFromRegion(ctx, sourceBucket.Region)
 	if err != nil {
 		return nil, fmt.Errorf("could not get aws credentials: %w", err)
@@ -36,6 +53,7 @@ func NewRequest(ctx context.Context, logger *zap.Logger, req *http.Request, sour
 	clone.Host = host
 	clone.URL.Scheme = "https"
 	clone.RequestURI = ""
+	clone.URL.Path = *options.path
 	// This needs to be set to "" in order to fix unicode errors in RawPath
 	// This forces to use the well formated req.URL.Path value instead
 	clone.URL.RawPath = ""
