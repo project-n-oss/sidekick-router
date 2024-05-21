@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/project-n-oss/sidekick-router/compare/v1.2.0...v1.3.0) (2024-05-21)
+
+
+### Features
+
+* add crunch path erroring ([#10](https://github.com/project-n-oss/sidekick-router/issues/10)) ([c0e6a51](https://github.com/project-n-oss/sidekick-router/commit/c0e6a51646c45a1adfdb39aff0d1dc56a25ec3a3))
+
 ## [1.2.0](https://github.com/project-n-oss/sidekick-router/compare/v1.1.2...v1.2.0) (2024-05-16)
 
 
