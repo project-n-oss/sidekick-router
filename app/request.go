@@ -51,8 +51,12 @@ func (sess *Session) DoAwsRequest(req *http.Request) (*http.Response, bool, erro
 		statusCode = resp.StatusCode
 	}
 
-	if statusCode == 404 && !sess.app.cfg.NoCrunchFailover {
-		crunchedRequest, err := aws.NewRequest(sess.Context(), sess.Logger(), req, sourceBucket, aws.WithPath("foo"))
+	if statusCode == 404 && !sess.app.cfg.NoCrunchErr {
+		path := req.URL.Path
+		newPath := path
+		print("path: ", path, "\n")
+
+		crunchedRequest, err := aws.NewRequest(sess.Context(), sess.Logger(), req, sourceBucket, aws.WithPath(newPath))
 		if err != nil {
 			return nil, false, fmt.Errorf("failed to make aws request: %w", err)
 		}

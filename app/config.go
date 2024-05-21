@@ -14,8 +14,8 @@ func (c CloudPlatformType) String() string {
 }
 
 type Config struct {
-	CloudPlatform    string `yaml:"CloudPlatform"`
-	NoCrunchFailover bool   `yaml:"NoCrunchFailover"`
+	CloudPlatform string `yaml:"CloudPlatform"`
+	NoCrunchErr   bool   `yaml:"NoCrunchErr"`
 }
 
 func (c Config) Validate() error {
