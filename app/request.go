@@ -1,12 +1,17 @@
 package app
 
 import (
+	"bytes"
 	"fmt"
+	"io"
 	"net/http"
-	"strings"
 
 	"github.com/project-n-oss/sidekick-router/app/aws"
 )
+
+func statusCodeIs2xx(statusCode int) bool {
+	return statusCode >= 200 && statusCode < 300
+}
 
 // DoRequest makes a request to the cloud platform
 // Does a request to the source bucket and if it returns 404, tries the crunched bucket
@@ -19,6 +24,8 @@ func (sess *Session) DoRequest(req *http.Request) (*http.Response, bool, error) 
 		return nil, false, fmt.Errorf("CloudPlatform %s not supported", sess.app.cfg.CloudPlatform)
 	}
 }
+
+const crunchFileFoundErr = "Src file not found, but crunched file found."
 
 // DoAwsRequest makes a request to AWS
 // Does a request to the source bucket and if it returns 404, tries the crunched bucket
@@ -45,22 +52,26 @@ func (sess *Session) DoAwsRequest(req *http.Request) (*http.Response, bool, erro
 	}
 
 	if statusCode == 404 && !sess.app.cfg.NoCrunchFailover {
-		crunchedBucket := aws.SourceBucket{
-			Bucket: fmt.Sprintf("project-n-%s", sourceBucket.Bucket),
-			Region: sourceBucket.Region,
-			Style:  sourceBucket.Style,
-		}
-
-		if sourceBucket.Style == aws.PathStyle {
-			req.URL.Path = strings.Replace(req.URL.Path, sourceBucket.Bucket, crunchedBucket.Bucket, 1)
-		}
-
-		crunchedRequest, err := aws.NewRequest(sess.Context(), sess.Logger(), req, crunchedBucket)
+		crunchedRequest, err := aws.NewRequest(sess.Context(), sess.Logger(), req, sourceBucket, aws.WithPath("foo"))
 		if err != nil {
 			return nil, false, fmt.Errorf("failed to make aws request: %w", err)
 		}
 
 		resp, err := http.DefaultClient.Do(crunchedRequest)
+		if err != nil {
+			return nil, false, fmt.Errorf("failed to do crunched aws request: %w", err)
+		}
+		crunchedStatusCode := -1
+		if resp != nil {
+			crunchedStatusCode = resp.StatusCode
+		}
+
+		// return 500 to client if there is a crunch version of the file
+		if statusCodeIs2xx(crunchedStatusCode) {
+			resp.StatusCode = 500
+			resp.Body = io.NopCloser(bytes.NewReader([]byte(crunchFileFoundErr)))
+		}
+
 		return resp, true, err
 	}
 
