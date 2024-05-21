@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"strings"
 
 	"github.com/project-n-oss/sidekick-router/app/aws"
 )
@@ -51,12 +52,9 @@ func (sess *Session) DoAwsRequest(req *http.Request) (*http.Response, bool, erro
 		statusCode = resp.StatusCode
 	}
 
-	if statusCode == 404 && !sess.app.cfg.NoCrunchErr {
-		path := req.URL.Path
-		newPath := path
-		print("path: ", path, "\n")
-
-		crunchedRequest, err := aws.NewRequest(sess.Context(), sess.Logger(), req, sourceBucket, aws.WithPath(newPath))
+	if statusCode == 404 && !isCrunchedFile(req.URL.Path) && !sess.app.cfg.NoCrunchErr {
+		crunchedFilePath := makeCrunchFilePath(req.URL.Path)
+		crunchedRequest, err := aws.NewRequest(sess.Context(), sess.Logger(), req, sourceBucket, aws.WithPath(crunchedFilePath))
 		if err != nil {
 			return nil, false, fmt.Errorf("failed to make aws request: %w", err)
 		}
@@ -80,4 +78,22 @@ func (sess *Session) DoAwsRequest(req *http.Request) (*http.Response, bool, erro
 	}
 
 	return resp, false, err
+}
+
+func makeCrunchFilePath(filePath string) string {
+	splitS := strings.SplitAfterN(filePath, ".", 2)
+	ret := strings.TrimSuffix(splitS[0], ".") + ".gr"
+	if len(splitS) > 1 {
+		ret += "." + splitS[1]
+	}
+	return ret
+}
+
+func isCrunchedFile(filePath string) bool {
+	splitS := strings.SplitAfterN(filePath, ".", 2)
+	if len(splitS) == 1 {
+		return false
+	}
+	ext := splitS[len(splitS)-1]
+	return strings.HasPrefix(ext, "gr")
 }

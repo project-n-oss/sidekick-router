@@ -6,10 +6,9 @@ import { getOptions } from './get-options';
 import { SignedRequest } from './signed-request';
 
 // This test will get the original file through sidekick-router
-
 const signedRequest = SignedRequest({
-    bucket: 'tpc-ds-dataset-401252763139',
-    key: 'generated/100GB/parquet/zstd/call_center/part-00000-tid-7101178479252055718-5a452987-cf95-4df3-811c-d36ea6918723-8-1.c000.zstd.parquet',
+    bucket: 'project-n-sidekick-router-test',
+    key: '100GB/parquet/zstd/call_center/part-00000-tid-3044319830967113622-f94b7d07-f853-4fc5-900c-c62b22276c2e-1169-1.c000.zstd.parquet',
     endpoint: 'http://localhost:7075',
 });
 

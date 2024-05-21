@@ -4,3 +4,4 @@ config.yml
 bin/
 tmp/
 test.sh
+.vscode
