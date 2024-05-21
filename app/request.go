@@ -1,9 +1,7 @@
 package app
 
 import (
-	"bytes"
 	"fmt"
-	"io"
 	"net/http"
 	"strings"
 
@@ -26,7 +24,7 @@ func (sess *Session) DoRequest(req *http.Request) (*http.Response, bool, error) 
 	}
 }
 
-const crunchFileFoundErr = "Src file not found, but crunched file found."
+const crunchFileFoundErrStatus = "500 Src file not found, but crunched file found"
 
 // DoAwsRequest makes a request to AWS
 // Does a request to the source bucket and if it returns 404, tries the crunched bucket
@@ -71,7 +69,7 @@ func (sess *Session) DoAwsRequest(req *http.Request) (*http.Response, bool, erro
 		// return 500 to client if there is a crunch version of the file
 		if statusCodeIs2xx(crunchedStatusCode) {
 			resp.StatusCode = 500
-			resp.Body = io.NopCloser(bytes.NewReader([]byte(crunchFileFoundErr)))
+			resp.Status = crunchFileFoundErrStatus
 		}
 
 		return resp, true, err
